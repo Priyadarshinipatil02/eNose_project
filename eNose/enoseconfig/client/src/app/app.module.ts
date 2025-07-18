@@ -35,6 +35,7 @@ import { NetworkinfoComponent } from './networkinfo/networkinfo.component';
 import { HomepageComponent } from './homepage/homepage.component'
 
 import { CommonModule } from '@angular/common';
+import { AccountComponent } from './account/account.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { CommonModule } from '@angular/common';
     ConnectionComponent,
     IpaddressComponent,
     DeviceinfoComponent,
-    NetworkinfoComponent
+    NetworkinfoComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

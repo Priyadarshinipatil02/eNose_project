@@ -16,6 +16,7 @@ import { IpaddressComponent } from './ipaddress/ipaddress.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DeviceinfoComponent } from './deviceinfo/deviceinfo.component';
 import { NetworkinfoComponent } from './networkinfo/networkinfo.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,14 @@ const routes: Routes = [
         },
         canActivate:[RoleGuard],
         component: NetworkinfoComponent
+      },
+      {
+        path: "Account-Info",
+        data:{
+          role:[ROLE.ADMIN]
+        },
+        canActivate:[RoleGuard],
+        component: AccountComponent
       },
       // {
       //   path: "settings/sensor-config",
