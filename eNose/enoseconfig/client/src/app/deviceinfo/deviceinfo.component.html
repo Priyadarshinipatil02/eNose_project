@@ -3,62 +3,65 @@
         <div class="row mt-4 justify-content-center">
             <div class="col-lg-6">
                 <div class="card p-4">
- 
+
                     <div class="row">
                         <div class="col-lg-12 mb-3">
                             <h3>Device Info</h3>
                         </div>
                         <form class="row" [formGroup]="deviceInfoForm" (ngSubmit)="saveDeviceInfo()">
-                           
-                        <div class="col-lg-6 mb-3">
-                            <label>Device Name</label>
-                            <input type="text" formControlName="deviceName" class="form-control">
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <label>Firmware version</label>
-                            <input type="text" formControlName="firmwareVersion" class="form-control">
-                        </div>
- 
- 
- 
-                        <div class="col-lg-6 mb-3">
-                            <label>Serial Number</label>
-                            <input readonly type="text" formControlName="serialNumber" class="form-control">
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <label>Timezone</label>
-                            <input type="text" formControlName="timeZone" class="form-control">
-                        </div>
- 
- 
-                        <div class="col-lg-6 mb-3">
-                            <label>Host URL</label>
-                            <input type="text" formControlName="hosturl" class="form-control">
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <label>Capture Sensor data until</label>
-                            <select class="form-select" formControlName="captureSensorData">
-                                <option *ngFor="let ut of captureSensorDataList"  [value]="ut" [selected]="ut.selected == true">{{ut}}</option>
-                              </select>
- 
-                        </div>
- 
- 
- 
-                        <div class="col-lg-6 mb-3">
-                            <label>Upgrade Firmware</label>
-                            <input type="text" formControlName="upgradeFirmware" class="form-control">
- 
-                           
-                        </div>
- 
-                        <div class="col-lg-6 mb-3 mt-4">
-                           
-                            <button class="btn btn-outline-primary me-2 ">Upload</button>
-                        </div>
-                        <!-- <div class="col-lg-12 mb-3">
+
+                            <div class="col-lg-6 mb-3">
+                                <label>Device Name</label>
+                                <input type="text" formControlName="deviceName" class="form-control">
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label>Firmware version</label>
+                                <input type="text" formControlName="firmwareVersion" class="form-control">
+                            </div>
+
+
+
+                            <div class="col-lg-6 mb-3">
+                                <label>Serial Number</label>
+                                <input readonly type="text" formControlName="serialNumber" class="form-control">
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label>Timezone</label>
+                                <input type="text" formControlName="timeZone" class="form-control">
+                            </div>
+
+
+                            <div class="col-lg-6 mb-3">
+                                <label>ASAP Host URL</label>
+                                <input type="text" formControlName="hosturl" class="form-control">
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label>Site Description</label>
+                                <select class="form-select" formControlName="captureSensorData">
+                                    <option *ngFor="let ut of captureSensorDataList" [value]="ut"
+                                        [selected]="ut.selected == true">{{ut}}</option>
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="col-lg-6 mb-3">
+                                <label>Log retention (Days)</label>
+                                <input type="text" formControlName="upgradeFirmware" class="form-control">
+
+
+                            </div>
+
+                            <div class="col-lg-6 mb-3">
+                                <label>Upgrade Firmware</label> <br>
+                                <button class="btn btn-outline-primary me-2">
+                                    <i class="bi bi-upload"></i> Upload
+                                </button>
+                            </div>
+                            <!-- <div class="col-lg-12 mb-3">
                             <label>Radio Buttons</label>
- 
+
                             <div class="d-flex mt-2">
                                 <div class="form-check me-3">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
@@ -76,34 +79,46 @@
                                 </div>
                             </div>
                         </div> -->
- 
-                        <div lass="col-lg-12 mb-3">
-                             <label>Demo Mode</label>
-                            <label class="switch">
-                            <input type="checkbox" formControlName="demoMode">
-                            <span class="slider round"></span>
-                            </label>
-                        </div>
- 
-                        <div class="col-lg-12">
-                            <div class="footer-bth d-flex justify-content-between">
-                                <div>
-                                <button class="btn btn-primary" type="button" [delete]="{title:'Are you sure to restart the device?'}" (confirm)="restart()">Reboot</button>
+
+                            <div class="col-lg-12 mb-3">
+                                <label>Mode</label>
+                                <!-- <label>Demo Mode</label>
+                                <label class="switch">
+                                    <input type="checkbox" formControlName="demoMode">
+                                    <span class="slider round"></span>
+                                </label> -->
+                            </div>
+
+                            <!-- <div class="col-lg-12">
+                                <div class="footer-bth d-flex justify-content-between"> -->
+                            <div class="col-lg-12">
+                                <div class="footer-bth d-flex">
+                                    <!-- <div>
+                                        <button class="btn btn-primary" type="button"
+                                            [delete]="{title:'Are you sure to restart the device?'}"
+                                            (confirm)="restart()">Reboot</button>
+                                    </div> -->
+
+                                    <button class="btn btn-outline-secondary btn-sm me-2" type="button">Demo
+                                        Mode</button>
+                                    <button class="btn btn-outline-warning btn-sm me-2" type="button">Debug
+                                        Mode</button>
+                                    <button class="btn btn-outline-success btn-sm" type="button">Production</button>
+
+                                    <!-- <div>
+                                        <button class="btn btn-outline-primary me-2">Cancel</button>
+                                        <button class="btn btn-primary">Save</button>
+                                    </div> -->
                                 </div>
-                                <div>
-                                    <button class="btn btn-outline-primary me-2">Cancel</button>
-                                    <button class="btn btn-primary">Save</button>
-                                </div>
-                        </div>
-                        </div>
+                            </div>
                         </form>
- 
- 
+
+
                     </div>
                 </div>
- 
+
             </div>
         </div>
     </div>
- 
+
 </div>
