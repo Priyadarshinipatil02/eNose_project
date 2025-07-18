@@ -1,0 +1,56 @@
+<form [formGroup]="resetForm" (ngSubmit)="updatePasswordSubmit()">
+    <!-- <div class="modal-header header-popoup">
+        <h5 class="modal-title" id="add_new_user_label">Update Password</h5>
+        <button type="button" data-bs-dismiss="modal" aria-label="Close">
+            <span class="close">&times;</span>
+        </button>
+    </div> -->
+    <div class="modal-body system-saction-from">
+        <div class="field-row">
+            <label>Old Password</label>
+            <input type="password" name="password" formControlName="oldPassword" class="form-control"
+                [ngClass]="invalidRegister('oldPassword')"
+                 />
+            <div *ngIf="isErrorRegister('oldPassword','required')" class="invalid-feedback">Old Password is
+                required</div>
+                <div *ngIf="isErrorRegister('oldPassword','passwordStrength')" class="invalid-feedback">Passwords
+                    validation for 8 characters with 1 numeral, 1alphabet, 1 special characeter.</div>
+
+           
+
+        </div>
+        <div class="field-row">
+            <label>New Password</label>
+            <input type="password" name="password" formControlName="password" class="form-control"
+                [ngClass]="invalidRegister('password')" />
+            <div *ngIf="isErrorRegister('password','required')" class="invalid-feedback">Password is
+                required</div>
+            <div *ngIf="isErrorRegister('password','minlength')" class="invalid-feedback">Password must be 8
+                charactor
+                long</div>
+            <div *ngIf="isErrorRegister('password','passwordStrength')" class="invalid-feedback">Passwords
+                validation for 8 characters with 1 numeral, 1alphabet, 1 special characeter.</div>
+
+        </div>
+        <div class="field-row">
+            <label>Confirm Password</label>
+            <input type="password" name="cpassword" formControlName="cpassword" class="form-control"
+                [ngClass]="invalidRegister('cpassword','notSame')" />
+            <div *ngIf="isErrorRegister('cpassword','required')" class="invalid-feedback">Confirm Password
+                is required
+            </div>
+            <div *ngIf="isErrorRegister('cpassword','minlength')" class="invalid-feedback">Confirm Password
+                must be 8
+                charactor long</div>
+            <div *ngIf="isErrorRegister('cpassword','passwordStrength')" class="invalid-feedback">Confirm
+                Password validation for 8 characters with 1 numeral, 1alphabet, 1 special characeter.</div>
+            <div *ngIf="registerForm.hasError('notSame')" class="invalid-feedback">Confirm Password must
+                match with
+                password</div>
+        </div>
+    </div>
+    <div class="modal-footer button-all">
+        <button class="btn btn-warning" (click)="closeModel('add_new_user')">Reset</button>
+        <button class="btn btn-primary" [disabled]="!resetForm.valid" >Update Password</button>
+    </div>
+</form>

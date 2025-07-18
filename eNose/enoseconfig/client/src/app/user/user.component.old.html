@@ -1,0 +1,127 @@
+<div class="row col-md-6 offset-md-3">
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" data-bs-delay="1000"
+        role="alert">
+        <strong>{{successMessage}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="usernameError" class="alert alert-danger alert-dismissible fade show" data-bs-delay="1000" role="alert">
+        <strong>{{usernameError}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <form *ngIf="!addNewUser && !resetUserPassword" class="row" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="col-md-11">
+            <div class="form-group">
+                <input type="text" formControlName="username" autocomplete="off" name="username"
+                    [ngClass]="invalid('username')" class="form-control" />
+                <div *ngIf="isError('username','required')" class="invalid-feedback">Please enter the username to search
+                </div>
+                <div *ngIf="isError('username','minlength')" class="invalid-feedback">Please enter atleat 3 charector
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" [disabled]="!searchForm.valid">Search</button>
+            </div>
+        </div>
+        <div *ngIf="error" class="col-md-12">
+            <span class="text-danger mr-3">{{error}}</span>
+            <button type="button" (click)="addUser()" class="btn btn-primary">Add User</button>
+        </div>
+        <div *ngIf="user" class="col-md-12">
+            <span class="text-success mr-3">{{user.email}}</span>
+            <button type="button" (click)="reserPassword()" class="btn btn-success">Reset Password</button>
+        </div>
+    </form>
+    <form *ngIf="addNewUser" class="row" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+        <div class="col-md-12">
+            <h5>Add New User</h5>
+        </div>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" formControlName="username" name="username" class="form-control"
+                [ngClass]="invalidRegister('username')" />
+            <div *ngIf="isErrorRegister('username','required')" class="invalid-feedback">Username is required</div>
+            <div *ngIf="isErrorRegister('username','minlength')" class="invalid-feedback">Username must be more than 3
+                charactor</div>
+            <div *ngIf="isErrorRegister('username','alphanumeric')" class="invalid-feedback">Username must be
+                alphanumeric</div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" formControlName="email" class="form-control"
+                [ngClass]="invalidRegister('email')" />
+            <div *ngIf="isErrorRegister('email','required')" class="invalid-feedback">Email is required</div>
+            <div *ngIf="isErrorRegister('email','email')" class="invalid-feedback">Invalid email format</div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" formControlName="password" class="form-control"
+                [ngClass]="invalidRegister('password')" />
+            <div *ngIf="isErrorRegister('password','required')" class="invalid-feedback">Password is required</div>
+            <div *ngIf="isErrorRegister('password','minlength')" class="invalid-feedback">Password must be 8 charactor
+                long</div>
+            <div *ngIf="isErrorRegister('password','passwordStrength')" class="invalid-feedback">Passwords validation
+                for 8 characters with 1 numeral, 1alphabet, 1 special characeter.</div>
+
+        </div>
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="cpassword" formControlName="cpassword" class="form-control"
+                [ngClass]="invalidRegister('cpassword','notSame')" />
+            <div *ngIf="isErrorRegister('cpassword','required')" class="invalid-feedback">Confirm Password is required
+            </div>
+            <div *ngIf="isErrorRegister('cpassword','minlength')" class="invalid-feedback">Confirm Password must be 8
+                charactor long</div>
+            <div *ngIf="isErrorRegister('cpassword','passwordStrength')" class="invalid-feedback">Confirm Password
+                validation for 8 characters with 1 numeral, 1alphabet, 1 special characeter.</div>
+            <div *ngIf="registerForm.hasError('notSame')" class="invalid-feedback">Confirm Password must match with
+                password</div>
+        </div>
+        <div class="col-md-12">
+            <button type="reset" class="btn btn-warning mr-3" (click)="cancel()">Cancel</button>
+            <button class="btn btn-primary" [disabled]="!registerForm.valid">Save</button>
+        </div>
+    </form>
+    <form *ngIf="resetUserPassword" class="row" [formGroup]="resetForm" (ngSubmit)="resetPasswordSubmit()">
+        <div class="col-md-12">
+            <h5>Reset user password</h5>
+        </div>
+        <div class="form-group">
+            <label>Username</label>
+            <span class="form-control">{{user?.userName}}</span>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <span class="form-control">{{user?.email}}</span>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" formControlName="password" class="form-control"
+                [ngClass]="invalidReset('password')" />
+            <div *ngIf="isErrorReset('password','required')" class="invalid-feedback">Password is required</div>
+            <div *ngIf="isErrorReset('password','minlength')" class="invalid-feedback">Password must be 8 charactor
+                long</div>
+            <div *ngIf="isErrorReset('password','passwordStrength')" class="invalid-feedback">Password must include 1
+                alphabet 1 number and 1 symbol</div>
+
+        </div>
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="cpassword" formControlName="cpassword" class="form-control"
+                [ngClass]="invalidReset('cpassword','notSame')" />
+            <div *ngIf="isErrorReset('cpassword','required')" class="invalid-feedback">Confirm Password is required
+            </div>
+            <div *ngIf="isErrorReset('cpassword','minlength')" class="invalid-feedback">Confirm Password must be 8
+                charactor long</div>
+            <div *ngIf="isErrorReset('cpassword','passwordStrength')" class="invalid-feedback">Confirm Password must
+                include 1 alphabet 1 number and 1 symbol</div>
+            <div *ngIf="resetForm.hasError('notSame')" class="invalid-feedback">Confirm Password must match with
+                password</div>
+        </div>
+        <div class="col-md-12">
+            <button type="button" (click)="cancel()" class="btn btn-warning mr-3">Cancel</button>
+            <button class="btn btn-primary" [disabled]="!resetForm.valid">Update Password</button>
+        </div>
+    </form>
+</div>

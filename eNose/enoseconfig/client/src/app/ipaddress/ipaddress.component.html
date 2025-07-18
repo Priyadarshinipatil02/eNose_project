@@ -1,0 +1,129 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="system-saction">
+            <div class="system-saction-from">
+              
+
+
+<form [formGroup]="registerForm" >
+    <div class="modal-body system-saction-from">
+      <div class="field-row">
+        <label>IPv4 address</label>
+        <input style="float: none;" type="text" name="ip_address" formControlName="default_ip_address" class="form-control"
+               [readonly]="!isEdit" />
+               <div *ngIf="registerForm.get('default_ip_address')?.invalid && (registerForm.get('default_ip_address')?.dirty || registerForm.get('default_ip_address')?.touched)">
+                <small class="text-danger" *ngIf="registerForm.get('default_ip_address')?.hasError('required')">IPv4 address is required.</small>
+                <small class="text-danger" *ngIf="registerForm.get('default_ip_address')?.hasError('invalidIpv4')">Invalid IPv4 address.</small>
+              </div>
+      </div>
+      <div class="field-row">
+        <label>IPv4 subnet mask</label>
+        <input  style="float: none;" type="text" name="subnet_mask" formControlName="default_subnet_mask" class="form-control"
+               [readonly]="!isEdit" />
+               <div *ngIf="registerForm.get('default_subnet_mask')?.invalid && (registerForm.get('default_subnet_mask')?.dirty || registerForm.get('default_subnet_mask')?.touched)">
+                <small class="text-danger" *ngIf="registerForm.get('default_subnet_mask')?.hasError('required')">IPv4 subnet mask is required.</small>
+                <small class="text-danger" *ngIf="registerForm.get('default_subnet_mask')?.hasError('invalidIpv4')">Invalid IPv4 subnet mask.</small>
+              </div>
+      </div>
+      <div class="field-row">
+        <label>IPv4 default gateway</label>
+        <input  style="float: none;" type="text" name="gateway" formControlName="default_gateway" class="form-control"
+               [readonly]="!isEdit" />
+               <div  *ngIf="registerForm.get('default_gateway')?.invalid && (registerForm.get('default_gateway')?.dirty || registerForm.get('default_gateway')?.touched)">
+                <small class="text-danger" *ngIf="registerForm.get('default_gateway')?.hasError('required')">IPv4 default gateway is required.</small>
+                <small class="text-danger" *ngIf="registerForm.get('default_gateway')?.hasError('invalidIpv4')">Invalid IPv4 gateway.</small>
+              </div>
+      </div>
+      <div class="field-row">
+        <label>DHCP</label>
+        <input type="text" name="dhcp_enabled" formControlName="dhcp_enabled" class="form-control"
+               [readonly]="!isEdit" />
+      </div>
+    </div>
+  </form>
+  
+ 
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-primary mx-2" *ngIf="!isEdit" (click)="makeEditable()">Edit</button>
+                    <button class="btn btn-primary mx-2" *ngIf="isEdit" (click)="submitForm()">Save</button>
+                    <button type="button" class="btn btn-secondary mx-2" *ngIf="isEdit" (click)="editCancel()">Cancel</button>
+                    <button type="button" [delete]="{title:'Are you sure to restart the device?'}" (confirm)="restart()" class="btn btn-primary mx-2">Restart</button>
+                    <button type="button" class="btn btn-primary mx-2" [delete]="{title: 'Are you sure?',text:'this will delete all your data'}" (confirm)="factoryReset()">Factory Reset</button>
+                    <button type="button" class="btn btn-primary mx-2" (click)="openModel()" >Update Firmware</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+      <!-- <div class="modal fade" id="firmwareUpdate" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    aria-labelledby="firmwareUpdate" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            hiiiiii
+        </div>
+    </div>
+</div>  -->
+
+
+
+
+<!-- <div class="modal fade" id="firmwareUpdate" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    aria-labelledby="firmwareUpdate" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form [formGroup]="registerForm">
+                <div class="modal-header header-popoup">
+                    <h5 class="modal-title" id="firmwareUpdate">Update Firmware</h5>
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="close">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body system-saction-from">
+                    <div class="field-row">
+                        <label>Select File</label>
+                        <input type="file" name="firmwareUpdate" formControlName="firmwareUpdate"
+                            (change)="handleFileInput($event)" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer button-all">
+                  <button class="btn btn-warning" (click)="closeModel('firmwareUpdate')">Close</button>
+                  <button class="btn btn-primary"  [delete]="{title: 'Are you sure?',text:'this will update your firmware'}">Save</button>
+              </div>
+          </form>
+          </div>
+      </div>
+  </div> -->
+
+
+  <div class="modal fade" id="firmwareUpdate" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    aria-labelledby="firmwareUpdate" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form [formGroup]="registerForm" >
+                <div class="modal-header header-popoup">
+                  
+                    <h5 class="modal-title" id="firmwareUpdate">Update Firmware</h5>
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="close">&times;</span>
+                    </button>
+                   
+
+                </div>
+                <div class="modal-body system-saction-from">
+                    <div class="field-row">
+                        <label>Select File</label>
+                        <input type="file" name="configuration" formControlName="configuration"
+                            (change)="handleFileInput($event)" class="form-control" style="height: auto;" />
+                    </div>
+                </div>
+                <div class="modal-footer button-all">
+                  <button class="btn btn-warning" (click)="closeModel('firmwareUpdate')">Close</button>
+                  <!-- <button class="btn btn-primary" [disabled]="!registerForm.valid">Save</button> -->
+                  <button class="btn btn-primary" [delete]="{title: 'Are you sure?',text:'this will update your firmware'}" (confirm)="updateFirmware()">Save</button>
+              </div>
+          </form>
+          </div>
+      </div>
+  </div>

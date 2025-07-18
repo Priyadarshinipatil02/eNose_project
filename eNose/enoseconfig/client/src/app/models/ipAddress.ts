@@ -1,0 +1,41 @@
+export interface ipAddress {
+    as_uid: string
+    systemId: string
+    deviceName: string
+    firmwareVersion: string
+    projectName: string
+    apiKey: string
+    as_validityKey: string
+    logRetentionDays: number
+    sensorDataRetention: number
+    asapHostUrl: string
+    fanSpeed: number
+    regulatoryInfo: string
+    bssid: string
+    ssidName: string
+    wifiPassword: string
+    wifiFrequency: number
+    ipv4Address: string
+    ipv4Gateway: string
+    ipv4Subnet: string
+    ipv6Address: string
+    ipv6Gateway: string
+    ipv6Subnet: string
+    dhcpStatus: number
+    nptServer: string
+    sensorDataFile: number
+    maxTemperature: string
+    minTemperature: string
+    maxHumidity: string
+    minHumidity: string
+    eventUpdateFrequency: number
+    brand: string
+    createdAt: string
+  }
+
+  export interface ipInfo {
+    ip_address: string;
+    subnet_mask: string;
+    gateway: string;
+  }
+ 

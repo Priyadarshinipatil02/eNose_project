@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>e-nose admin pannel</title>
+</head>
+
+<body class="content">
+    <div class="page-wrapper">
+        <app-header [user]="user"></app-header>
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <app-top [user]="user"></app-top>
+            <div class="main-content">
+                <div class="content-box-dashboard">
+                    <div class="container-fluid">
+                        <div class="dashboard-content">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</body>
+
+</html>

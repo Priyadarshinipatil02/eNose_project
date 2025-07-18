@@ -1,0 +1,48 @@
+<div class="row">
+  Hi Dasboard here!
+  <!-- <div class="col-md-6">
+    <div class="dashboard-content-inner">
+      <div class="box--ne-chart">
+        <div class="dashboard-content-notifications">
+          <span>
+            <img src="/assets/images/Temperature.png">Gas
+
+          </span>
+          <div class="humidty">
+            <div id="chart-container" *ngIf="gasChart">
+              <bar-chart [data]="gasChart.data" [showLegend]="gasChart.duration !='L'"></bar-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-content-notifications"> <span><img src="/assets/images/Notifications.png">Notifications</span>
+      <ul>
+        <li *ngFor="let log of logs">
+          Logged in at {{log.Logtime | date: "dd, MMMM yyyy hh:mm a UTC"}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="dashboard-content-inner">
+      <div class="dashboard-content-notifications"> <span><img src="/assets/images/Temperature.png">Temperature</span>
+        <div class="humidty">
+          <div *ngIf="temperatureChart" style="position: relative;">
+            <gauge-chart [data]="temperatureChart.data"></gauge-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-content-inner">
+      <div class="dashboard-content-notifications"> <span><img src="/assets/images/Humidity.png">Humidity</span>
+        <div class="humidty">
+          <div *ngIf="humidityChart" style="position: relative;">
+            <gauge-chart [data]="humidityChart.data"></gauge-chart>
+          </div>
+          <gauge-chart [scale]="humidity" [value]="39"></gauge-chart>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

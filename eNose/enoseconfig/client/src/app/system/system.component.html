@@ -1,0 +1,124 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="system-saction">
+            <div class="system-saction-from">
+                <form class="row" [formGroup]="systemConForm" (ngSubmit)="saveSystemConfig()">
+                    <div class="from-left">
+                        <label>Device Name</label>
+                        <input type="text" formControlName="deviceName" [readonly]="!isEdit" />
+                    </div>
+                    <div class="from-right">
+                        <label>Firmware Version</label>
+                        <input type="text" formControlName="firmwareVersion" [readonly]="true" />
+
+                    </div>
+                    <div class="from-left">
+                        <label>Serial Number</label>
+                        <input type="text" formControlName="serialNumber" [readonly]="true" />
+                    </div>
+                    <div class="from-right">
+                        <label>Project Name</label>
+                        <input type="text" formControlName="projectName" [readonly]="!isEdit" />
+                    </div>
+                    <div class="from-left">
+                        <label>Licence Expiry Date</label>
+                        <input type="text" formControlName="licenceExpiryDate" [readonly]="!isEdit" />
+                    </div>
+                    <div class="from-right">
+                        <label>Log Retention Period(Days)</label>
+                        <div class="quantity">
+                            <span class="quantity-add quantity-button" (click)="increament('logRetentionPeriod',90)">
+                                <img src="/assets/images/up.png">
+                            </span>
+                            <input type="number" step="1" min="1" formControlName="logRetentionPeriod" [readonly]="!isEdit">
+                            <span class="quantity-remove quantity-button" (click)="decreament('logRetentionPeriod',1)">
+                                <img src="/assets/images/down.png">
+                            </span>
+                          </div>
+                    </div>
+                    <div class="from-left">
+                        <label>Sensor Data Retention Period(Days)</label>
+                        <div class="quantity">
+                            <span class="quantity-add quantity-button" (click)="increament('sensorDataRetentionPeriod',90)">
+                                <img src="/assets/images/up.png">
+                            </span>
+                            <input type="number" step="1" min="1" formControlName="sensorDataRetentionPeriod" [readonly]="!isEdit">
+                            <span class="quantity-remove quantity-button" (click)="decreament('sensorDataRetentionPeriod',1)">
+                                <img src="/assets/images/down.png">
+                            </span>
+                          </div>
+                    </div>
+                    <!-- <div class="from-right">
+                        <label>Sensor Sampling Rate(Seconds)</label>
+                        <div class="quantity">
+                            <span class="quantity-add quantity-button" (click)="increament('sensorSamplingRate',60)">
+                                <img src="/assets/images/up.png" >
+                            </span>
+                            <input type="number" step="1" min="1" formControlName="sensorSamplingRate" [readonly]="!isEdit">
+                            <span class="quantity-remove quantity-button" (click)="decreament('sensorSamplingRate',1)">
+                                <img src="/assets/images/down.png">
+                            </span>
+                          </div>
+                    </div>
+                    <div class="from-left">
+                        <label>Temperature Sampling Rate(Seconds)</label>
+                        <div class="quantity">
+                            <span class="quantity-add quantity-button" (click)="increament('temperatureSamplingRate',60)">
+                                <img src="/assets/images/up.png">
+                            </span>
+                            <input type="number" step="1" min="1" formControlName="temperatureSamplingRate" [readonly]="!isEdit">
+                            <span class="quantity-remove quantity-button" (click)="decreament('temperatureSamplingRate',1)">
+                                <img src="/assets/images/down.png">
+                            </span>
+                          </div>
+                    </div>
+                    <div class="from-right">
+                        <label>Humidity Sampling Rate(Seconds)</label>
+                        <div class="quantity">
+                            <span class="quantity-add quantity-button" (click)="increament('humiditySamplingRate',60)">
+                                <img src="/assets/images/up.png">
+                            </span>
+                            <input type="number" step="1" min="1" formControlName="humiditySamplingRate" [readonly]="!isEdit">
+                            <span class="quantity-remove quantity-button" (click)="decreament('humiditySamplingRate',1)">
+                                <img src="/assets/images/down.png">
+                            </span>
+                          </div>
+                    </div> -->
+                    <div class="from-left">
+                        <label>Fan Speed</label>
+                        <div class="quantity">
+                            <span class="quantity-add quantity-button" (click)="increament('fanSpeed',1000)">
+                                <img src="/assets/images/up.png">
+                            </span>
+                            <input type="number" step="1" min="1" formControlName="fanSpeed" [readonly]="!isEdit">
+                            <span class="quantity-remove quantity-button" (click)="increament('fanSpeed',100)">
+                                <img src="/assets/images/down.png">
+                            </span>
+                          </div>
+                    </div>
+                        <div class="from-right">
+                            <label>ASAP Host Url</label>
+                            <input type="text" formControlName="asapHostUrl" [readonly]="!isEdit" />
+                            <button type="button" (click)="testAsap()" style="float: left; margin: 7px 0 0 10px;" [disabled]="true"
+                            class="btn btn-sm btn-primary">Test</button>
+                        </div>
+                    <div class="from-left">
+                        <label>Regulatory Info</label>
+
+                        <input type="text" [readonly]="true" formControlName="regulatoryInfo" [readonly]="!isEdit" />
+                    </div>
+                    <div class="from-right">
+                        <label>Device Time</label>
+
+                        <input type="text" formControlName="deviceTime" [readonly]="!isEdit" />
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn btn-primary mx-2" *ngIf="!isEdit" (click)="makeEditable()">Edit</button>
+                        <button class="btn btn-primary mx-2" *ngIf="isEdit">Save</button>
+                        <button type="button" class="btn btn-secondary mx-2" *ngIf="isEdit" (click)="editCancel()">Cancel</button>
+                        <button type="button" [delete]="{title:'Are you sure to restart the device?'}" (confirm)="restart()" class="btn btn-primary mx-2">Restart</button>
+                        <button type="button" class="btn btn-primary mx-2" [delete]="{title: 'Are you sure?',text:'this will delete all your data'}" (confirm)="factoryReset()">Factory Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>

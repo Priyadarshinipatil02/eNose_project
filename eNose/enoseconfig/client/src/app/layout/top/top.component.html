@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand sticky-top px-4 py-0">
+    <a routerLink="/">
+        <img src="assets/img/logo.svg" alt="sidebar" />
+    </a>
+   <span style="margin-top: 14px;margin-left: 10px; color: #3f1a63;"> Device Manager</span>
+ 
+    <div class="navbar-nav align-items-center ms-auto">
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <div class="username-box">
+                    <div class="username-image">
+                        <i class="fa fa-user" aria-hidden="true" style="font-size: 25px; color: #7f5dbf;"></i>
+                    </div>
+                    <div class="username-info">
+                        <div class="salutation-wrap">
+                            <h2 class="username-text"> {{user.userName}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                <a href="#" class="dropdown-item">My Profile</a>
+                <a href="#" class="dropdown-item">Settings</a>
+                <a href="javascript:void(0)" class="dropdown-item"  (click)="signOut()">Log Out</a>
+            </div>
+        </div>
+    </div>
+</nav>

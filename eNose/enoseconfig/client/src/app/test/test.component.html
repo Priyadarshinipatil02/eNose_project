@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="system-saction">
+            <div class="system-saction-from">
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-primary mx-2" *ngIf="!isEdit" (click)="makeEditable()">Edit</button>
+                    <button class="btn btn-primary mx-2" *ngIf="isEdit">Save</button>
+                    <button type="button" class="btn btn-secondary mx-2" *ngIf="isEdit" (click)="editCancel()">Cancel</button>
+                    <button type="button" [delete]="{title:'Are you sure to restart the device?'}" (confirm)="restart()" class="btn btn-primary mx-2">Restart</button>
+                <button type="button" class="btn btn-primary mx-2" [delete]="{title: 'Are you sure?',text:'this will delete all your data'}" (confirm)="factoryReset()">Factory Reset</button>
+                </div>
+            </div>
+        </div>

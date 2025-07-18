@@ -1,0 +1,417 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="gas-sensors-content">
+      <div class="gas-sensors-content-header">
+        <a href="javascript:void(0)" class="" [ngClass]="defaultSensorType == 1?'temp-humi-btn':'gas-sensors-btn'"
+          (click)="chnageTab(1)">WiFi</a>
+        <a href="javascript:void(0)" class="" [ngClass]="defaultSensorType == 2?'temp-humi-btn':'gas-sensors-btn'"
+          (click)="chnageTab(2)">Ethernet</a>
+      </div>
+      <div class="gas-sensors-box">
+        <div class="gas-sensors-box-header">
+          <h2><img src="/assets/images/gas-icon.png" />{{defaultSensorType==1?'wifi':'ethernet'}} </h2>
+          <!-- <a *ngIf="sensors" href="javascript:void(0)" (click)="showPopup('add_new_calibration')">Create New</a> -->
+        </div>
+        <div class="gas-sensors-box-add" *ngIf="defaultSensorType==1">
+
+
+
+
+
+          <!-- <div *ngIf="_WifiResponse">
+    <h2>Available Networks:</h2>
+    <select [(ngModel)]="selectedNetwork">
+      <option value="not-connected">Not Connected</option>
+      <ng-container *ngFor="let network of _WifiResponse.available_networks.default_wifi_networks">
+        <option [value]="network">{{ network }}</option>
+      </ng-container>
+    </select>
+    <div *ngIf="selectedNetwork !== 'not-connected'">
+      <p>Selected Network: {{ selectedNetwork }}</p>
+    </div>
+    </div> -->
+
+          <!--  -->
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="system-saction">
+                <div class="system-saction-from">
+
+
+
+                  <div class="row" *ngIf="_WifiResponse">
+                    <h2>Available Networks:</h2>
+                    <div class="netwrk-wifi" style="border-radius: 50px;">
+                      <select [(ngModel)]="selectedNetwork" (ngModelChange)="onNetworkChange()" style="min-width: 266px;
+                     background-color: #FBFBFB;
+                     border: 1px solid #EBEBEB;
+                      margin: 1px;
+                      border-radius: 50px;
+                      height: 44px;
+                      padding: 5px 10px;">
+                        <option value="not-connected">Not Connected</option>
+                        <ng-container *ngFor="let network of _WifiResponse.available_networks.default_wifi_networks">
+                          <option [value]="network">{{ network }}</option>
+                        </ng-container>
+                      </select>
+  
+                    </div>
+                  
+               
+
+                    <div class="from-left">
+                      <label>Selected Network:</label>
+                      <input type="text" [readonly]="true" value="{{ selectedNetwork }}" />
+                    </div>
+
+                    <div *ngIf="selectedNetwork !== 'not-connected'">
+                      <div class="from-left">
+                        <label>Enter Password:</label>
+
+                        <input
+                        type="{{ showPassword ? 'text' : 'password' }}"
+                        id="password"
+                        [(ngModel)]="wifiPassword"
+                        [readonly]="isConnected"
+                      />
+                      <div class="input-group-append" *ngIf="isConnected">
+                        <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()" style="position: relative;
+                        top: 50px;
+                        left: 11px;
+                        border: none;
+                    ">
+                          <i class="fas" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                        </button>
+                      </div>
+                        <!-- <input type="password" id="password" [(ngModel)]="wifiPassword" [readonly]="isConnected" /> -->
+                      </div>
+                      <!-- <button type="button" class="btn btn-primary mx-2" *ngIf="!isConnected"
+                        (click)="connectToWifi()">Connect</button>
+                      <button type="button" class="btn btn-primary mx-2" *ngIf="isConnected"
+                        (click)="disconnectFromWifi()">Disconnect</button> -->
+
+                      <div *ngIf="connectError">{{ connectError }}</div>
+                    </div>
+                    <div  *ngIf="selectedNetwork !== 'not-connected'">
+                      <button type="button" class="btn btn-primary mx-2" *ngIf="!isConnected"
+                      (click)="connectToWifi()">Connect</button>
+                    <button type="button" class="btn btn-primary mx-2" *ngIf="isConnected"
+                      (click)="disconnectFromWifi()">Disconnect</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <ul>
+              <li class="{{sensor.status | sensor_status}}" *ngFor="let sensor of sensors"
+                [ngClass]="sensor.sensorId == selectedSensor.sensorId?'sensor-active':''">
+                <a href="javascript:void(0)" (click)="selectSensor(sensor)"
+                  *ngIf="sensor.status == 1 || sensor.status == 3">
+                  <img src="/assets/images/Gas-Sensor-{{sensor.status | sensor_status}}.png" />
+                  <span>{{sensor.sensorName}}</span>
+                </a>
+                <a *ngIf="sensor.status == 2 || sensor.status == 4">
+                  <img src="/assets/images/Gas-Sensor-{{sensor.status | sensor_status}}.png" />
+                  <span>{{sensor.sensorName}}</span>
+                </a>
+              </li>
+            </ul> -->
+        </div>
+        <div class="gas-sensors-box-add" *ngIf="defaultSensorType==2">
+          ETHERNET
+          <!-- <ul>
+               <li class="{{sensor.status | sensor_status}}" *ngFor="let sensor of sensors"
+                 [ngClass]="sensor.sensorId == selectedSensor.sensorId?'sensor-active':''">
+                 <a href="javascript:void(0)" (click)="selectSensor(sensor)"
+                   *ngIf="sensor.status == 1 || sensor.status == 3">
+                   <img src="/assets/images/Gas-Sensor-{{sensor.status | sensor_status}}.png" />
+                   <span>{{sensor.sensorName}}</span>
+                 </a>
+                 <a *ngIf="sensor.status == 2 || sensor.status == 4">
+                   <img src="/assets/images/Gas-Sensor-{{sensor.status | sensor_status}}.png" />
+                   <span>{{sensor.sensorName}}</span>
+                 </a>
+               </li>
+             </ul> -->
+        </div>
+      </div>
+      <!-- <div class="gas-sensors-table">
+          <div class="gas-sensors-box-header">
+            <h2><img width="24"
+                src="/assets/images/Gas-Sensor-{{(selectedSensor?selectedSensor.status: 3) | sensor_status}}.png" />{{selectedSensor?selectedSensor.sensorName:''}}
+              Details</h2>
+            <a *ngIf="selectedSensor" class="{{selectedSensor.status | sensor_status}}" href="javascript:void(0)"
+              title="Click to change status" [delete]='{"title":"Are you sure?","text":"want to toggle sensor status"}'
+              (confirm)="changeStatus(selectedSensor)">{{selectedSensor.status|sensor_status_name}}</a>
+          </div>
+          <div class="table-sacroll">
+            <div class="model-detail" *ngIf="selectedModel">
+              <div class="row">
+                <div class="col text-center">
+                  <label>Model Name</label>
+                  <p class="h5">{{selectedModel.modelName}}</p>
+                </div>
+                <div class="col text-center">
+                  <label>Alert Name</label>
+                  <p class="h5">{{selectedModel.alertName}}</p>
+                </div>
+                <div class="col text-center">
+                  <label>Event Criteria Type</label>
+                  <p class="h5">{{selectedModel.eventCriteriaType|event_criteria_type}}</p>
+                </div>
+                <div class="col text-center">
+                  <label>Status</label>
+                  <p class="h5" [ngClass]="selectedModel.status==1?'active-tbale':'inactive-tbale'">{{selectedModel.status
+                    | status}}</p>
+                </div>
+              </div>
+              <div class="row my-5">
+                <div class="col text-center sensor-main">
+                  <label>
+                    <img src="/assets/icons/highest.png" />
+                    Highest
+                  </label>
+                  <div class="row">
+                    <div class="col-md-6 sensor-sen">
+                      <small>Min</small>
+                      <p title="{{getSplitedRange(selectedModel.range1).minfull}}">
+                        {{getSplitedRange(selectedModel.range1).min}}</p>
+                    </div>
+                    <div class="col-md-6 sensor-sen">
+                      <small>Max</small>
+                      <p title="{{getSplitedRange(selectedModel.range1).maxfull}}">
+                        {{getSplitedRange(selectedModel.range1).max}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col text-center sensor-main">
+                  <label>
+                    <img src="/assets/icons/medium.png" />
+                    Medium
+                  </label>
+                  <div class="row">
+                    <div class="col-md-6 sensor-sen">
+                      <small>Min</small>
+                      <p title="{{getSplitedRange(selectedModel.range2).minfull}}">
+                        {{getSplitedRange(selectedModel.range2).min}}</p>
+                    </div>
+                    <div class="col-md-6 sensor-sen">
+                      <small>Max</small>
+                      <p title="{{getSplitedRange(selectedModel.range2).maxfull}}">
+                        {{getSplitedRange(selectedModel.range2).max}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col text-center sensor-main">
+                  <label>
+                    <img src="/assets/icons/low.png" />
+                    Low
+                  </label>
+                  <div class="row">
+                    <div class="col-md-6 sensor-sen">
+                      <small>Min</small>
+                      <p title="{{getSplitedRange(selectedModel.range3).minfull}}">
+                        {{getSplitedRange(selectedModel.range3).min}}</p>
+                    </div>
+                    <div class="col-md-6 sensor-sen">
+                      <small>Max</small>
+                      <p title="{{getSplitedRange(selectedModel.range3).maxfull}}">
+                        {{getSplitedRange(selectedModel.range3).max}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col text-center sensor-main">
+                  <label>
+                    <img src="/assets/icons/lowest.png" />
+                    Lowest
+                  </label>
+                  <div class="row">
+                    <div class="col-md-6 sensor-sen">
+                      <small>Min</small>
+                      <p title="{{getSplitedRange(selectedModel.range4).minfull}}">
+                        {{getSplitedRange(selectedModel.range4).min}}</p>
+                    </div>
+                    <div class="col-md-6 sensor-sen">
+                      <small>Max</small>
+                      <p title="{{getSplitedRange(selectedModel.range4).maxfull}}">
+                        {{getSplitedRange(selectedModel.range4).max}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 text-center modal-footer button-all">
+                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-secondry cancel" (click)="editModel()">Edit</button>
+                <button class="btn btn-secondry download-file">Download</button>
+                <button class="btn btn-primary test">Test Sample</button>
+              </div>
+            </div>
+            <div class="no-model" *ngIf="!selectedModel">
+              <p class="h5 text-center">There is no model for the selected sensor.</p>
+            </div>
+            <table *ngIf="false">
+              <tbody id="user_tbody">
+                <tr>
+                  <th>Sensor Name</th>
+                  <th>Model Name</th>
+                  <th>Alert Name</th>
+                  <th>Created At</th>
+                  <th>Status</th>
+                </tr>
+                <tr *ngFor="let model of dbmodels" (click)="openModel(model)">
+                  <td>{{model.sensorName}}</td>
+                  <td>{{model.modelName}}</td>
+                  <td>{{model.alertName}}</td>
+                  <td>{{model.createdAt | date:'dd, MMM yyyy hh:mm a UTC'}}</td>
+                  <td class="active-tbale">Active</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> -->
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="add_new_calibration" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+  aria-labelledby="add_new_calibration_label" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <form [formGroup]="calibration_form">
+        <div class="modal-header header-popoup">
+          <h5 class="modal-title" id="add_new_calibration_label"> {{!isUpdate?'Create Model':'Update Model'}}</h5>
+          <button type="button" (click)="closeModel('add_new_calibration')">
+            <span class="close">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body popup-content">
+          <div class="filde-input">
+            <label>Model Name</label>
+            <div class="input-fild">
+              <input type="text" formControlName="model_name" />
+            </div>
+          </div>
+          <div class="filde-input">
+            <label>Alert Name</label>
+            <div class="input-fild">
+              <input type="text" formControlName="alert_name" />
+            </div>
+          </div>
+          <div class="filde-input">
+            <label>Alert Status</label>
+            <div class="input-fild">
+              <div class="onoffswitch">
+                <input type="checkbox" formControlName="alert_status" class="onoffswitch-checkbox" id="myonoffswitch">
+                <label class="onoffswitch-label" for="myonoffswitch">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="filde-input" *ngIf="isEdit">
+            <label>Event Criteria Type</label>
+            <div class="input-fild">
+              <div class="eventCType">
+                <input type="radio" formControlName="event_criteria_type" [value]="1" id="event_criteria_type1" />
+                <input type="radio" formControlName="event_criteria_type" [value]="2" id="event_criteria_type0" />
+                <label class="{{calibration_form.value.event_criteria_type==1?'active':''}}"
+                  for="event_criteria_type1">Standard Method</label>
+                <label class="{{calibration_form.value.event_criteria_type==2?'active':''}}"
+                  for="event_criteria_type0">Multi-Variant</label>
+              </div>
+            </div>
+          </div>
+          <div class="filde-input" *ngIf="selectedModel && isEdit">
+            <label>Sensitivity Setting</label>
+            <div class="input-fild">
+              <div class="popup-col text-center">
+                <label>
+                  <img src="/assets/icons/highest.png" />
+                  Highest
+                </label>
+                <div class="row">
+                  <div class="col-md-6 sensor-sen">
+                    <small>Min. Value</small>
+                    <input formControlName="range1_min" />
+                  </div>
+                  <div class="col-md-6 sensor-sen">
+                    <small>Max. Value</small>
+                    <input formControlName="range1_max" />
+                  </div>
+                </div>
+              </div>
+              <div class="popup-col text-center">
+                <label>
+                  <img src="/assets/icons/medium.png" />
+                  Medium
+                </label>
+                <div class="row">
+                  <div class="col-md-6 sensor-sen">
+                    <small>Min. Value</small>
+                    <input formControlName="range2_min" />
+                  </div>
+                  <div class="col-md-6 sensor-sen">
+                    <small>Max. Value</small>
+                    <input formControlName="range2_max" />
+                  </div>
+                </div>
+              </div>
+              <div class="popup-col text-center">
+                <label>
+                  <img src="/assets/icons/low.png" />
+                  Low
+                </label>
+                <div class="row">
+                  <div class="col-md-6 sensor-sen">
+                    <small>Min. Value</small>
+                    <input formControlName="range3_min" />
+                  </div>
+                  <div class="col-md-6 sensor-sen">
+                    <small>Max. Value</small>
+                    <input formControlName="range3_max" />
+                  </div>
+                </div>
+              </div>
+              <div class="popup-col text-center">
+                <label>
+                  <img src="/assets/icons/lowest.png" />
+                  Lowest
+                </label>
+                <div class="row">
+                  <div class="col-md-6 sensor-sen">
+                    <small>Min. Value</small>
+                    <input formControlName="range4_min" />
+                  </div>
+                  <div class="col-md-6 sensor-sen">
+                    <small>Max. Value</small>
+                    <input formControlName="range4_max" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer button-all">
+          <button type="button" *ngIf="!isUpdate" class="btn btn-primary" (data)="finished()" (cancel)="cancelProcess()"
+            (start)="startDownload()"
+            [progress]='{"title":"Calibration Data Collection process started", html:"it will finished in <b>"+defaultFrequency+"</b> seconds", "showCancelButton":true, "timer":defaultFrequency*1000}'>Save</button>
+          <button type="button" *ngIf="isUpdate" class="btn btn-primary" [disabled]="!enableSaveButton"
+            (click)="update()">Save</button>
+          <button type="button" class="btn btn-secondry cancel"
+            (click)="closeModel('add_new_calibration')">Cancel</button>
+          <!-- <button type="button" *ngIf="raw_data" class="btn btn-danger download-file" (click)="download()">Download
+              File</button>
+            <button type="button" *ngIf="raw_data || isUpdate" class="btn btn-danger" [delete]="{title:'Are you sure?'}"
+              (confirm)="deleteLast()">Delete</button>
+            <button type="button" *ngIf="raw_data || isUpdate" class="btn btn-primary test">Test</button> -->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

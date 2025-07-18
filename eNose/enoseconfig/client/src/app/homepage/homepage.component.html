@@ -1,0 +1,93 @@
+
+    <!-- Content Start -->
+    <div class="content">
+        
+
+        <div class="body-container">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <a (click)="navigateToInfo('device')">
+                          <div class="card align-items-center">
+                            <img width="100" src="assets/img/fw_info.png">
+                            <h5 class="mt-3">Device Info</h5>
+                          </div>
+                        </a>
+                      </div>
+                      
+
+                      <div class="col-md-4">
+                        <a (click)="navigateToInfo('network')">
+                          <div class="card align-items-center">
+                            <img src="assets/img/Network-Wifi.svg">
+                            <h5 class="mt-3">Network Wifi</h5>
+                          </div>
+                        </a>
+                      </div>
+                   
+                    <div class="col-md-4">
+                        <a routerLink="/Account">
+                            <div class="card align-items-center">
+                                <img src="assets/img/account.svg">
+                                <h5 class="mt-3">Account</h5>
+                            </div>
+                        </a>
+                    </div>
+
+                     
+                </div>
+
+                <div class="row mt-4" >
+                  <div class="col-md-4" >
+                        <a *ngIf="isSampleTestingShow" (click)="openModal()">
+                            <div class="card align-items-center">
+                                <img src="assets/img/sample-testing.png">
+                                <h5 class="mt-3">Sample Testing</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+
+          <div class="modal" *ngIf="showModal" (click)="closeModal()">
+             <div class="modal-content" (click)="$event.stopPropagation()">
+              <div class="row">
+                <div >
+                   <span *ngIf="count == undefined" style="float: left;">   Analysing... </span>
+                   <span  *ngIf="count > 0" style="float: left;"> {{count}} Rows Collected</span>
+                   <span  *ngIf="count == -1" style="float: left;"> Test Resuls</span>
+                   <span style="float: right; color: red; margin-top: -10px;" class="close" (click)="closeModal()">&times;</span>
+                </div>
+              </div>
+
+                    <div *ngIf="isLoading" class="spinner"></div>
+                    <!-- Success Message -->
+                     <div *ngIf="status === 'success'" class="status-box success">
+                         <div class="icon">&#10004;</div> <!-- ✓ -->
+                         <span>Odour detected</span>
+                     </div>
+
+                    <!-- Failed Message -->
+                    <div *ngIf="status === 'failed'" class="status-box failed">
+                        <div class="icon">&#10006;</div> <!-- ✖ -->
+                       <span>No Odour</span>
+                    </div>
+
+
+                    <div>
+                    <!-- *ngIf="status === 'success' || status === 'failed' " -->
+                    <button type="button" style="background: #7f5dbf; color: white; cursor: pointer; border-radius: 25px;" *ngIf="status === 'success' || status === 'failed'" (click)="startSampling()">Reload</button>
+               </div>
+               </div>
+
+               
+                
+          </div>
+
+        
+    </div>
+    <!-- Content End -->
+
