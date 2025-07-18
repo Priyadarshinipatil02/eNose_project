@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <h1>
+        <button onclick="rundemo()">Run Demo</button>
+    </h1>
+    <script>
+        
+		var base_uri = 'localhost:5000'
+        function rundemo() {
+			const url_get = "http://"+base_uri+"/api/GetAll"
+            const url_post = "http://"+base_uri+"/api/FirmwareSensors"
+			const url_auth = "http://"+base_uri+"/api/login"
+			const login = {
+			"username": "system",
+			"password": "iomni"
+			}
+						
+            fetch(url_auth,
+			{ 	method: "POST",
+				body: JSON.stringify(login),
+				headers: {"Content-Type": "application/json"}
+			})
+            .then(async (lres)=>{
+                const data = await lres.json();
+				const user =  data;//JSON.parse(data);
+                const headers = {
+									"Content-Type": "application/json", "Authorization": `Bearer ${user.access_token}`
+								}
+                fetch(url_get, {
+                method: "GET",
+                headers
+            }).then(async (res) => {
+                const sensors = await res.json();
+                let interval = 1;
+                let updateData = []
+                setInterval(() => {
+                    const data = sensors.map((sensor) => {
+                        return {
+                            sensorId: sensor.fwDeviceId,
+                            data:  (Math.random() * (3 - 0) + 0).toFixed(8),//Math.floor(Math.random() * 3),
+                            status: sensor.status							
+                        }
+						
+                    })
+					
+                    updateData.push(...data)
+                    if (interval == 1) {
+                    updata = [...updateData]
+					console.log(JSON.stringify(updata))
+                    updateData = []
+					//debugger
+                        fetch(url_post,
+                            {
+                                method: "POST",
+                                body: JSON.stringify(updata),
+                                headers
+                            })
+                            .then(async (res) => {
+                                let d = await res.json();
+                                console.log(d)
+                            })
+                        interval = 0
+                    }
+                    interval++
+                }, 6000)
+                console.log(sensors)
+            })
+            })
+            
+        }
+    </script>
+</body>
+
+</html>
